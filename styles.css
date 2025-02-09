@@ -1,6 +1,8 @@
 :root {
   --primary-color: #3b82f6;
   --primary-hover: #2563eb;
+  --secondary-color: #10b981;
+  --accent-color: #f59e0b;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
   --gray-300: #d1d5db;
@@ -8,7 +10,7 @@
   --gray-600: #4b5563;
   --gray-700: #374151;
   --gray-800: #1f2937;
-  --bg-gradient: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+  --bg-gradient: linear-gradient(135deg, #a5b4fc, #818cf8);
   --bg-content: white;
   --text-primary: var(--gray-800);
   --text-secondary: var(--gray-600);
@@ -19,6 +21,8 @@
 [data-theme="dark"] {
   --primary-color: #60a5fa;
   --primary-hover: #3b82f6;
+  --secondary-color: #34d399;
+  --accent-color: #fbbf24;
   --gray-100: #1f2937;
   --gray-200: #374151;
   --gray-300: #4b5563;
@@ -26,8 +30,8 @@
   --gray-600: #d1d5db;
   --gray-700: #e5e7eb;
   --gray-800: #f3f4f6;
-  --bg-gradient: linear-gradient(to bottom right, #0f172a, #1e293b);
-  --bg-content: #1f2937;
+  --bg-gradient: linear-gradient(135deg, #4b5563, #1f2937);
+  --bg-content: #111827;
   --text-primary: #f3f4f6;
   --text-secondary: #e5e7eb;
   --border-color: #374151;
@@ -47,6 +51,8 @@ body {
   min-height: 100vh;
   color: var(--text-primary);
   transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -81,23 +87,20 @@ header h1 {
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: background-color 0.2s;
+  font-size: 1.25rem;
 }
 
 .theme-toggle:hover {
   background: var(--gray-100);
 }
 
-.theme-toggle svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-[data-theme="dark"] .sun-icon,
-[data-theme="light"] .moon-icon {
+[data-theme="dark"] .fa-sun,
+[data-theme="light"] .fa-moon {
   display: none;
 }
 
 main {
+  flex: 1;
   padding: 2rem 0;
 }
 
@@ -116,8 +119,6 @@ main {
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-secondary);
-  width: 1.25rem;
-  height: 1.25rem;
 }
 
 #locationSearch {
@@ -171,6 +172,20 @@ main {
   display: none;
 }
 
+.location-info {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.location-info h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.location-info p {
+  color: var(--text-secondary);
+}
+
 .tabs {
   display: flex;
   gap: 1rem;
@@ -193,9 +208,8 @@ main {
   white-space: nowrap;
 }
 
-.tab-button svg {
-  width: 1.25rem;
-  height: 1.25rem;
+.tab-button i {
+  font-size: 1.25rem;
 }
 
 .tab-button.active {
@@ -213,7 +227,6 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  padding: 1rem;
 }
 
 .attraction-card {
@@ -241,7 +254,7 @@ main {
 }
 
 .attraction-category {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
@@ -260,8 +273,7 @@ main {
 }
 
 .stars {
-  color: #fbbf24;
-  letter-spacing: -1px;
+  color: var(--accent-color);
 }
 
 .rating-number {
@@ -346,6 +358,7 @@ main {
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
+  font-size: 1.25rem;
 }
 
 .swap-button:hover {
@@ -359,6 +372,34 @@ main {
   background: var(--bg-content);
   border-radius: 0.5rem;
   margin-top: 1rem;
+}
+
+.local-time {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+footer {
+  background: var(--bg-content);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px var(--shadow-color);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 @keyframes spin {
